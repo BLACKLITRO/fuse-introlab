@@ -5,8 +5,9 @@ This very simple lab will guide you to create your very first Fuse-based SpringB
 * Create a project that reads from a database
 * Expose a restful API endpoint to access data in the database
 * Add/Commit source to a GIT repository
-* Deploy your application on OpenShift
-* Manage and control the access to your API using 3scale
+* Deploy your application on OpenShift*
+* Create your first SpringBoot Fuse Transformer project
+* Optional: Manage and control the access to your API using 3scale
 
 ## Red Hat 3scale API Management Platform Account
 This lab focuses on the deployment and administration of Red Hat 3Scale. One deployment topology available is known as a *hybrid* approach. A *hybrid* Red Hat 3Scale deployment topology is one in which the 3Scale API gateway is self-managed in your own environment. This self-managed API gateway is in two-way communication with the hosted Red Hat 3Scale SaaS API Management Platform (AMP).

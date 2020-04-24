@@ -5,7 +5,7 @@ In JBoss Developer Studio, create a new project by right click in the project ex
 
 Enter **myfuselab** as the project name, and click *next*
 
-IMPORTANT NOTE : MUST select **2.18.1.redhat-000012** as the Camel Version!!
+> IMPORTANT NOTE : MUST select **2.21.0.fuse-760027-redhat-00001 (Fuse 7.6.0 GA)** as the Camel Version!!
 
 In select target runtime, click *next*
 
@@ -15,7 +15,7 @@ In Advance project setup, choose **Use a predefined template** and select **Fuse
 
 ![03-template.png](./img/03-template.png)
 
-JBDS is going ask if you want to change to Fuse perspective, click yes. 
+CodeReady Studio is going to ask if you want to change to Fuse perspective, click yes. 
 
 Under *src/main/resources* duplicate **application.properties** and with name **application-dev.properties**, we are going to use this as the setting during our development time.
 
@@ -31,7 +31,7 @@ spring.datasource.password =
 spring.datasource.driver-class-name = org.h2.Driver
 spring.datasource.platform = h2
 ```
-*note: we are using H2 in memory database for testing. And thanks to autowiring in SpringBoot, it is now automatically loaded and wired as the default datasource to the Camel context*
+> *note: we are using H2 in memory database for testing. And thanks to autowiring in SpringBoot, it is now automatically loaded and wired as the default datasource to the Camel context*
 
 Create a new file under *src/main/resources* by right click on the folder itself in the project explorer panel, select **New** -> **Others**
 
