@@ -1,117 +1,102 @@
-## Lab one - Create first SprintBoot Fuse project
-In JBoss Developer Studio, create a new project by right click in the project explorer panel, select **New** -> **Fuse Integration Project**
+## Lab three - Create a GIT repository for your code
 
-![01-FIS-project.png](./img/01-FIS-project.png)
+In this lab we are goin to sync our code with a new GIT repo. For this lab, we are going to use a Gogs Git server deployed into Openshift. 
+You are free to use any other Git public/private repo like Github, Gitlab, etc.
 
-Enter **myfuselab** as the project name, and click *next*
+> We will be referencing this Git server url as: $GIT_URL
+  
+> And the Git user will be: user1
 
-IMPORTANT NOTE : MUST select **2.18.1.redhat-000012** as the Camel Version!!
+## Create a repository 
+1. Go to the $GIT_URL and then create a new account named "user1" password "openshift".
 
-In select target runtime, click *next*
+![1-git.png](./img/1-git.png)
 
-![02-runtime.png](./img/02-runtime.png)
+2. Now login with that account.
 
-In Advance project setup, choose **Use a predefined template** and select **Fuse on OpenShift** -> **SprintBoot on OpenShift** and click *finish*
+![2-git.png](./img/2-git.png)
 
-![03-template.png](./img/03-template.png)
+3. Then create a new repo named: "myfuselab"
 
-JBDS is going ask if you want to change to Fuse perspective, click yes. 
+![3-git.png](./img/3-git.png)
 
-Under *src/main/resources* duplicate **application.properties** and with name **application-dev.properties**, we are going to use this as the setting during our development time.
+## Sync code with the Git repo
+1. In CodeReady Studio (CRS), go to "*Window > Perspective > Show Perspective > Other ...*"
 
-![04-devproperties.png](./img/04-devproperties.png)
+![4-git.png](./img/4-git.png)
 
-Append at the end the following datasource configuration to file **application-dev.properties**,
+2. Select the Git perspective
 
-```
-#Database configuration
-spring.datasource.url = jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-spring.datasource.username = sa
-spring.datasource.password = 
-spring.datasource.driver-class-name = org.h2.Driver
-spring.datasource.platform = h2
-```
-*note: we are using H2 in memory database for testing. And thanks to autowiring in SpringBoot, it is now automatically loaded and wired as the default datasource to the Camel context*
+![5-git.png](./img/5-git.png)
 
-Create a new file under *src/main/resources* by right click on the folder itself in the project explorer panel, select **New** -> **Others**
 
-![05-newfile.png](./img/05-newfile.png)
+3. Create new Git Repo in CodeReady Studio...
+Go to the icon that says Create new Git repo and click on it.
 
-In Select a wizard, choose **File** and click next,
+![6-git.png](./img/6-git.png)
 
-In File, put **schema.sql** as the file name, and make sure it's under the myfuselab project *src/main/resources* and select finish.
+4. Fill all with your Git repo info then click Next...
 
-![06-schemasql.png](./img/06-schemasql.png)
+![7-git.png](./img/7-git.png)
 
-Add the following SQL to **schema.sql**
+5. In the next screen do not select nothing, just click Next...
 
-```
-CREATE TABLE customerdemo (
-	customerID varchar(10) NOT NULL,
-	vipStatus varchar(10) NOT NULL ,
-	balance integer NOT NULL
-);
+![8-git.png](./img/8-git.png)
 
-INSERT INTO customerdemo (customerID,vipStatus,balance) VALUES ('A01','Diamond',1000);
-INSERT INTO customerdemo (customerID,vipStatus,balance) VALUES ('A02','Gold',500);
-```
+6. Then in the final screen select some local directory from your disk. Then click Finish.
 
-![07-sql.png](./img/07-sql.png)
+![9-git.png](./img/9-git.png)
 
-Double click on the **camel-context.xml** file under **Camel Contexts**, you will see the Camel route, delete the simple-route in the canvas.
+7. Change the perspective to the "Fuse Integration" perspective. Then right click on your project and then select "**Team > Share project ...**"
 
-![08-deleteroute.png](./img/08-deleteroute.png)
+![10-git.png](./img/10-git.png)
 
-Create a new route by draging **ROUTE** component from the *Routing* palette on the right. Name the route to **customer** by entering it in the *ID* textbox in the properties section.
+8. Now select Git, click Next. Then from the Repository list select the recently Git Repo that you recently added to your workspace.
 
-![09-route.png](./img/09-route.png)
+![11-git.png](./img/11-git.png)
 
-Use Timer to kick start the route, drag the **TIMER** component from the *Components* palette on the right, and drag it to the route into the canvas. Under *Properties*-> *Advance* tab -> *Consumer* , set **Repeat Count** to **1**
+Now you just linked your local project with the remote repo in the Git server. Next step, commit and push your code.
 
-![10-timer.png](./img/10-timer.png)
+## Commit and push your code to remote Git repo.
 
-To read data from the datasource, select **SQL** component from the *Components* palette on the right to the route. Under *Properties*-> *Advance* tab -> *Path*, set **Query** to **select * from customerdemo** 
+1. In git first you have to add any new file to the local git index. To do so, do right click on your project, then "**Team > Add to index ...**"
 
-![11-sqlcomponent.png](./img/11-sqlcomponent.png)
+![12-git.png](./img/12-git.png)
 
-and in *Common* tab set **Data Source** to **#dataSource**
 
-![12-datasource.png](./img/12-datasource.png)
+2. Now we can do a Commit and Push of our code/changes to the remote git repo. Right click on your project, then "**Team > Commit ...**"
 
-And lastly select **LOG** component from the *Components* palette to the end of route. Under *Properties*-> *Detail* tab, set **Message** to **${body}**
+![13-git.png](./img/13-git.png)
 
-![13-log.png](./img/13-log.png)
+3. Put some comment and then click on Commit / Push button. Select **master** branch and put your user credentials when asked.
 
-Before we kick start the application, add the database driver dependency in the **pom.xml** file
+4. If all was ok, your code now is on the remote git repo.
 
-```
-...
-<properties>
-  ...
-  <run.profiles>dev</run.profiles>
-</properties>
-...
+![14-git.png](./img/14-git.png)
 
-<dependencies>
-	...
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>1.4.193.redhat-2</version>
-      <scope>runtime</scope>
-    </dependency>
-    ...
-</dependencies>
-```
-Right click on the **myfuselab** in the project explorer panel, select **Run As..** -> **Maven build...** 
 
-![14-mavenrun.png](./img/14-mavenrun.png)
 
-in the pop-up windown enter **spring-boot:run** in *Goals* and select **Skip Tests**.
 
-![15-springbootrun.png](./img/15-springbootrun.png)
 
-In your log console, verify that customer data is printed.
-```
-customer - [{CUSTOMERID=A01, VIPSTATUS=Diamond, BALANCE=1000}, {CUSTOMERID=A02, VIPSTATUS=Gold, BALANCE=500}]
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
