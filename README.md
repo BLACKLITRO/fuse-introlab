@@ -1,9 +1,10 @@
 # Red Hat Agile API Integration Workshop - Microservices-based Managed API Integration
 
-This very simple lab will guide you to create your very first Fuse-based SpringBoot microservice project running on OpenShift. There are 4 sections in the labs.
+This very simple lab will guide you to create your very first Fuse-based SpringBoot microservice project running on OpenShift 4. There are 4 sections in the labs.
 
 * Create a project that reads from a database
 * Expose a restful API endpoint to access data in the database
+* Add/Commit source to a GIT repository
 * Deploy your application on OpenShift
 * Manage and control the access to your API using 3scale
 
@@ -12,78 +13,33 @@ This lab focuses on the deployment and administration of Red Hat 3Scale. One dep
 
 ![00-3scale-hybrid-deployment.png](./img/00-3scale-hybrid-deployment.png)
 
-The focus of lab 04 of this course is on this hybrid deployment topology. Subsequently, the lab 04 make heavy use of your account in the Red Hat 3Scale SaaS AMP. If you do not have a Red Hat 3Scale SaaS, please register for free trial one at: https://www.3scale.net/signup/.
+The focus of lab 04 of this course is on this hybrid deployment topology. Subsequently, the lab 04 make heavy use of your account in the Red Hat 3Scale SaaS AMP. If you do not have a Red Hat 3Scale SaaS, please register for free trial one at: [https://www.3scale.net/signup/](https://www.3scale.net/signup/).
 
 You will receive an email in your inbox to complete the signup process and activate your account.
 
 ## Installation
 Before you begin, please make sure the following software are properly installed
 
-* JBoss Development Suite V1.3 (MacOX/Windows), sorry Linux users, you are on your own
-	* JBoss Developer Studio 10.3.0.GA with Integration SOA plugin installed
-	https://developers.redhat.com/products/devsuite/download/
-	* Java Platform, Standard Edition 1.8.0.111
-	* Red Hat Container Development Kit 2.4.0.GA
-	* Oracle Virtualbox 5.0.26
-	* Vagrant 1.8.1
+* CodeReady Studio 12.0.15.GA with Integration plugin installed
+https://developers.redhat.com/products/codeready-studio/download
+* Java Platform, Standard Edition 1.8.0+
+* An Openshift 4.2 (or major) environment access
+> Note: If you don't have a Openshift environment, you can download for free and install a local one in your laptop. Just follow steps in this link: [CodeReady Containers](https://developers.redhat.com/products/codeready-containers/overview)
+
 
 ## Installing and setup development environment
-Double click on the JBoss Development Suite, log in using your Red Hat Developer Site credentials.
-
-![01-login.png](./img/01-login.png)
-
-Pick an installation folder destination.
-The installer guide will detect the components needed, and guide you through the installation process.
-
-Installed the components with the version specified in the installer and start to download and install.
-
-![02-components.png](./img/02-components.png)
-
-Immediately after installation, you will be prompted to select a workspace for your developer studio project. Select anything path of your choice.
-
-Once inside Red Hat JBoss Developer Studio, select "Software/Update" tag in the middle panel. Check the "JBoss Fuse Development" box and click on Install/Update button.
+1. Download Red Hat CodeReady Studio from [Link](https://developers.redhat.com/products/codeready-studio/download)
+2. Follow steps acording you S.O.: https://developers.redhat.com/products/codeready-studio/hello-world
+3. Immediately after installation, you will be prompted to select a workspace for your Red Hat CodeReady Studio project. Select any path of your choice.
+4. Once inside Red Hat CodeReady Studio, select "Software/Update" tag in the middle panel. Check the "JBoss Fuse Development" box and click on Install/Update button.
+> Note: If there isn't a "JBoss Fuse Development" in the list, check "Show installed" option in the upper right corner in order to see if the plugin is already installed. Some latest CodeReady Studio versions might already have this plugin installed out-of-the-box.
 
 ![04-plugin.png](./img/04-plugin.png)
 
-Red Hat JBoss Developer Studio will restart.
+5. Red Hat CodeReady Studio will restart.
 
-## Installing and setup Container Development Kit
 
-Under the folder where you installed the Development Suite, you will find a folder named **cdk** go to **${DEVSUITE_INSTALLTION_PATH}/cdk/components/rhel/rhel-ose/** edit file **Vagrantfile**
-
-Find the IMAGE_TAG and configure the OCP version to v3.4, then save the file.
-
-```
-#Modify IMAGE_TAG if you need a new OCP version e.g. IMAGE_TAG="v3.3.1.3"
-IMAGE_TAG="v3.4"
-```
-
-In a command line console, start up your local Openshift
-
-```
-vagrant up
-```
-
-Install and setup oc binary client
-
-```
-vagrant service-manager install-cli openshift
-export PATH=${vagrant_dir}/data/service-manager/bin/openshift/1.4.0:$PATH
-eval "$(VAGRANT_NO_COLOR=1 vagrant service-manager install-cli openshift  | tr -d '\r')"
-```
-
-Login as admin
-
-```
-oc login -u admin
-Authentication required for https://10.1.2.2:8443 (openshift)
-Username: admin
-Password:
-Login successful.
-
-```
-
-Install Fuse image stream on OpenShift and Database template for this lab
+### Install Fuse image stream on OpenShift and Database template for this lab (as admin user)
 
 ```
 #FIS image
@@ -93,36 +49,25 @@ oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/
 oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/mysql-ephemeral-template.json -n openshift
 ```
 
-log back in as developer
+Log back in as developer user
 
 ```
-oc login -u openshift-dev
-Authentication required for https://10.1.2.2:8443 (openshift)
-Username: openshift-dev
-Password:
-Login successful.
+oc login [openshift-environment-apiurl]:6443 -u [dev-user]
 
 ```
 
-Access OpenShift console by going to the following URL in the browser.
-
-```
-https://10.1.2.2:8443
-```
-
-Going back to Red Hat JBoss Developer Studio, in OpenShift Explorer view, click on **New Connection Wizard..** to configure OpenShift setting
-Enter **https://10.1.2.2:8443** as the **Server** and click on the **retrieve** link to access the token.
+Going back to Red Hat CodeReady Studio, in OpenShift Explorer view, click on **New Connection Wizard..** to configure OpenShift setting
+Enter **openshift-api-url:6443** as the **Server** and click on the **retrieve** link to access the token.
 
 ![05-token.png](./img/05-token.png)
 
-In the popup window, log in as Developer using ID/PWD openshift-dev/devel. Select ok and check the **Save token** box.
+In the popup window, log in as Developer using your user and pasword. Select ok and check the **Save token** box.
 
 ![06-connection.png](./img/06-connection.png)
 
 ## Windows Users
 
-- Make sure you disable  Hyper-V functionality under Control Panel
-- Add _config.ssh.insert\_key=false_ to **Vagrantfile** ${DEVSUITE_INSTALLATION_PATH}/cdk/components/rhel/rhel-ose/
+- Make sure you disable  Hyper-V functionality under Control Panel when using CodeReady Container local Openshift environment.
 
 Thanks to @sigreen
 

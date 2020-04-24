@@ -74,7 +74,7 @@ To read data from the datasource, select **SQL** component from the *Components*
 
 ![11-sqlcomponent.png](./img/11-sqlcomponent.png)
 
-and in *Common* tab set **Data Source** to **dataSource**
+and in *Common* tab set **Data Source** to **#dataSource**
 
 ![12-datasource.png](./img/12-datasource.png)
 
@@ -97,6 +97,7 @@ Before we kick start the application, add the database driver dependency in the 
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
+      <version>1.4.193.redhat-2</version>
       <scope>runtime</scope>
     </dependency>
     ...
