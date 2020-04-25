@@ -1,6 +1,6 @@
 # Red Hat Agile API Integration Workshop - Microservices-based Managed API Integration
 
-This very simple lab will guide you to create your very first Fuse-based SpringBoot microservice project running on OpenShift 4. There are 4 sections in the labs.
+This very simple lab will guide you to create your very first Fuse-based SpringBoot microservice project running on OpenShift 4. There are 6 sections in the labs.
 
 * Create a project that reads from a database
 * Expose a restful API endpoint to access data in the database
