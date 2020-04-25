@@ -1,11 +1,11 @@
 ## Lab five - Create your first SpringBoot Fuse Transformer project
-In JBoss Developer Studio, create a new project by right click in the project explorer panel, select **New** -> **Fuse Integration Project**
+In CodeReady Studio, create a new project by right click in the project explorer panel, select **New** -> **Fuse Integration Project**
 
 ![01-FIS-project.png](./img/01-FIS-project.png)
 
 Enter **myfusetransformerlab** as the project name, and click *next*
 
-IMPORTANT NOTE : MUST select **2.18.1.redhat-000012** as the Camel Version!!
+> IMPORTANT NOTE : MUST select **2.21.0.fuse-760027-redhat-00001 (Fuse 7.6.0 GA)** as the Camel Version!!
 
 In select target runtime, click *next*
 
@@ -15,7 +15,7 @@ In Advance project setup, choose **Use a predefined template** and select **Fuse
 
 ![03-template.png](./img/03-template.png)
 
-JBDS is going ask if you want to change to Fuse perspective, click yes. 
+CRS is going ask if you want to change to Fuse perspective, click yes. 
 
 Right-click on the *src/* directory and click "New" then "Folder".  Name the folder **data**.
 
