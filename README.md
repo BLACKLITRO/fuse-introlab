@@ -14,7 +14,7 @@ This lab focuses on the deployment and administration of Red Hat 3Scale. One dep
 
 ![00-3scale-hybrid-deployment.png](./img/00-3scale-hybrid-deployment.png)
 
-The focus of lab 04 of this course is on this hybrid deployment topology. Subsequently, the lab 04 make heavy use of your account in the Red Hat 3Scale SaaS AMP. If you do not have a Red Hat 3Scale SaaS, please register for free trial one at: [https://www.3scale.net/signup/](https://www.3scale.net/signup/).
+The focus of lab 06 of this course is on this hybrid deployment topology. Subsequently, the lab 06 make heavy use of your account in the Red Hat 3Scale SaaS AMP. If you do not have a Red Hat 3Scale SaaS, please register for free trial one at: [https://www.3scale.net/signup/](https://www.3scale.net/signup/).
 
 You will receive an email in your inbox to complete the signup process and activate your account.
 
