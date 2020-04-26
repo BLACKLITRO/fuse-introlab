@@ -123,7 +123,7 @@ Then your project will be oned from Git repo, compiled the Java source, then Bui
 But that's not all, a route was created automaticly for you too in order to exposed the app to the world! In Openshift web console, Look at the view "Developer > Topology". Then click en the icon in the upper right corner of your App in order to go to the app's URL:
 
 
-![12-deploy.png](./img/12-deploy.png)
+![12-deploy2.png](./img/12-deploy.png)
 
 
 Access the API endpoint by going to following URL
