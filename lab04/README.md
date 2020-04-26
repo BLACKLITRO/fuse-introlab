@@ -14,10 +14,6 @@ In this lab we are going to deploy our service into Openshift as a Container. Bu
    oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/db-templates/mysql-ephemeral-template.json -n openshift --as=system:admin
    ```
 
-You can try view the OpenShift console by going to https://&lt;OPENSHIFT-SERVER-IP&gt;:8443/console in the browser. 
-
-![00-openshift.png](./img/00-openshift.png)
-
 
 Now it's time to deploy the application onto OpenShift, we have been testing with the H2 Database in memory, now it's time to run it with a real database. Add the following datasource setting under *src/main/resources* in **application.properties**
 
@@ -104,9 +100,9 @@ Then select an existing project, in this case "myfuselab". Then click "Ok"
 
 ![07-deploy.png](./img/07-deploy.png)
 
-2. Now we must select a Fuse template in order to deploy the app on Openshift. Every template user aOpenshift strategy to create (build) new images called "S2I" or "Source to Image". Every template references to a container Base Image. In the case of Fuse 7, we need to select a template that match the Fuse version that we are using, in this case Fuse 7.6. Just follow the images bellow.
+2. Now we must select a Fuse template in order to deploy the app on Openshift. When we use a template, Openshift use a strategy to create (build) new images called "S2I" or "Source to Image". Every template references a container Base Image, so the S2I build process take that as a reference in order to create a new image for you app, in other words, s2i creates a Container Images for your app automaticly. In the case we need a bese image for Fuse 7 apps, so we need to select a template that match the runtime (Fuse) and the version that we are using, in this case Fuse 7.6. Just follow the images bellow.
 
-> Note: In the image below there is not a template for Fuse 7.6 in the list, just for Fuse 7.5, so we are going to use that).
+> Note: In the image below there is not a template for Fuse 7.6 in the list, just go for the one that says Fuse 7.5, we can change de base image version later).
 
 ![08-deploy.png](./img/08-deploy.png)
 
