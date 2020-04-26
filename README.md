@@ -1,6 +1,6 @@
 # Red Hat Agile API Integration Workshop - Microservices-based Managed API Integration
 
-This very simple lab will guide you to create your very first Fuse-based SpringBoot microservice project running on OpenShift 4. There are 6 sections in the labs.
+This very simple lab will guide you to create your very first Fuse 7.6 based SpringBoot microservice project running on OpenShift 4. There are 6 sections in the labs.
 
 * Create a project that reads from a database
 * Expose a restful API endpoint to access data in the database
@@ -10,7 +10,7 @@ This very simple lab will guide you to create your very first Fuse-based SpringB
 * Manage and control the access to your API using 3scale
 
 ## Red Hat 3scale API Management Platform Account
-This lab focuses on the deployment and administration of Red Hat 3Scale. One deployment topology available is known as a *hybrid* approach. A *hybrid* Red Hat 3Scale deployment topology is one in which the 3Scale API gateway is self-managed in your own environment. This self-managed API gateway is in two-way communication with the hosted Red Hat 3Scale SaaS API Management Platform (AMP).
+The last lab (lab 6) focuses on the deployment and administration of Red Hat 3Scale. One deployment topology available is known as a *hybrid* approach. A *hybrid* Red Hat 3Scale deployment topology is one in which the 3Scale API gateway is self-managed in your own environment. This self-managed API gateway is in two-way communication with the hosted Red Hat 3Scale SaaS API Management Platform (AMP).
 
 ![00-3scale-hybrid-deployment.png](./img/00-3scale-hybrid-deployment.png)
 
@@ -24,8 +24,8 @@ Before you begin, please make sure the following software are properly installed
 * CodeReady Studio 12.0.15.GA with Integration plugin installed
 https://developers.redhat.com/products/codeready-studio/download
 * Java Platform, Standard Edition 1.8.0+
-* An Openshift 4.2 (or major) environment access
-> Note: If you don't have a Openshift environment, you can download for free and install a local one in your laptop. Just follow steps in this link: [CodeReady Containers](https://developers.redhat.com/products/codeready-containers/overview)
+* A Openshift 4.2 (or major) environment access
+> Note: If you don't have a Openshift environment, you can download and install it for free in your pc/laptop. Just follow steps in this link: [CodeReady Containers](https://developers.redhat.com/products/codeready-containers/overview)
 
 
 ## Installing and setup development environment
