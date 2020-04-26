@@ -1,7 +1,7 @@
 ## Lab four - Deploying to OpenShift
-In this lab we are going to deploy our service nto Openshift as a Container. But firs, we are going to deploy a mysql (in Openshift to) in order to connect aour app to a real RDBM, using a JDBC driver.
+In this lab we are going to deploy our service into Openshift as a Container. But first, we are going to deploy a mysql instance (in Openshift to) in order to connect our app to a real RDBM, using a JDBC driver.
 
-## irst we need to be sure that all imge streams for Fuse and MySQL are available in Openshift. With an Openshift admin user do the following:
+## First we need to be sure that all image streams for Fuse and MySQL are available in Openshift. With an Openshift admin user do the following:
 
 1. Add the `mysql-ephemeral` and `FIS` templates:
 
