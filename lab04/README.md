@@ -100,7 +100,7 @@ Then select an existing project, in this case "myfuselab". Then click "Ok"
 
 ![07-deploy.png](./img/07-deploy.png)
 
-2. Now we must select a Fuse template in order to deploy the app on Openshift. When we use a template, Openshift use a strategy to create (build) new images called "S2I" or "Source to Image". Every template references a container Base Image, so the S2I build process take that as a reference in order to create a new image for you app, in other words, s2i creates a Container Images for your app automaticly. In the case we need a bese image for Fuse 7 apps, so we need to select a template that match the runtime (Fuse) and the version that we are using, in this case Fuse 7.6. Just follow the images bellow.
+2. Now we must select a Fuse template in order to deploy the app on Openshift. When we use a template, Openshift use a strategy to create (build) new images called "S2I" or "Source to Image". Every template references a container Base Image, so the S2I build process take that as a reference in order to create a new image for you app, in other words, s2i creates a Container Image for your app automaticly. In the case we need a base image for Fuse 7 apps, so we need to select a template that match the runtime (Fuse) and the version that we are using, in this case Fuse 7.6. Just follow the images bellow.
 
 > Note: In the image below there is not a template for Fuse 7.6 in the list, just go for the one that says Fuse 7.5, we can change de base image version later).
 
